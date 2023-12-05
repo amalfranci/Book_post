@@ -1,0 +1,71 @@
+<%- include("./partials/header") %>
+<div class="container mt-5">
+  
+ 
+
+<style>
+  body {
+    background-color: #97d2e4;
+  }
+
+  .container {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .form-group {
+    margin-bottom: 20px;
+  }
+
+  .card {
+    margin-bottom: 20px;
+  }
+</style>
+
+
+
+<div class="container mt-5">
+  <h2>Books</h2>
+  <% if (bookCollection&& bookCollection.length > 0) { %>
+    <% bookCollection.forEach(function(book) { %>
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title"><%= book.title %></h5>
+        <p class="card-text"><%= book.story %></p>
+        <p class="card-text"><strong>Published Year:</strong> <%= book.publishedYear %></p>
+        <a href="/views/editBook?id=<%=book._id %>" class="btn btn-primary">Edit</a>
+
+
+
+        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#confirmRemoveModal<%=book._id %>">Delete</button>
+        <div class="modal fade" id="confirmRemoveModal<%=book._id %>" tabindex="-1" role="dialog" aria-labelledby="confirmRemoveModalLabel<%=book._id %>" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="confirmRemoveModalLabel<%=book._id %>">Confirm Remove</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                Are you sure you want to remove this?
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                <a href="/home/delete/<%=book._id %>">
+                  <button type="button" class="btn btn-danger">Remove</button>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <% }); %>
+  <% } else { %>
+    <p>No books found.</p>
+  <% } %>
+</div>
+</form>
+<a href="/adminhome" class="go-back-link">Go Back to Dashboard</a>
+<%- include("./partials/footer") %>

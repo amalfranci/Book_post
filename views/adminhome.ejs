@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User List</title>
+
+    <style >
+
+       
+        .logout-button {
+            margin-bottom: 5px;
+            text-align: right;
+        }
+        #usernotfound{
+         color: yellow;
+        }
+        #viewedit{
+            color: aliceblue;
+        }
+
+        .welcome-message {
+
+            color: #032b29;
+            font-size: medium;
+            text-align: left;
+          
+       
+         
+        }
+        
+
+
+        .table-responsive {
+            overflow-x: auto;
+        }
+
+        th.username-header {
+            background-color: #FFC300; 
+            text-align: center;
+        }
+
+        th.gmail-header {
+            background-color: #00BFFF; 
+            text-align: center;
+        }
+
+        th.phone-header {
+            background-color: #FF5733; 
+            text-align: center;
+        }
+
+        th.action-header {
+            background-color: #28e7de; 
+            text-align: center;
+            
+     
+        }
+
+        td {
+            text-align: center;
+            padding: 10px;
+        }
+        td a {
+        text-decoration: none;
+    }
+
+        h2 {
+            text-align: center;
+        }
+        
+    </style>
+</head>
+<body style="background-color: #b7d8e7;">
+    <%- include("./partials/header") %>
+    <div class="container mt-3 text-center">
+        <div class="logout-button">
+            <a href="/logout" class="btn btn-danger">Logout</a>
+        </div>
+       
+        <div class="welcome-message table-hover">
+            <h4>Welcome, <%= message %></h4>
+        </div>
+    </div>
+
+    <h2>USER LIST</h2>
+
+    <div class="table-responsiv table-hover">
+        <table width="100%">
+            <tr>
+                <th class="username-header">USERNAME</th>
+                <th class="gmail-header">GMAIL</th>
+                <th class="phone-header">PHONE NUMBER</th>
+                <th class="action-header">ACTION</th>
+                <th class="action-header">ACTION</th>
+                <th class="action-header">USER POST </th>
+           
+
+            </tr>
+
+            <% if (users.length > 0){
+                for(let i=0;i<users.length;i++){                
+            %>
+            <tr>
+                <td><%= users[i].email %></td>
+                <td><%= users[i].valu %></td>
+                <td><%= users[i].number %></td>
+                <td><button type="submit" class="btn bg-success  "><a id="viewedit" href="/views/edit_user?id=<%= users[i]._id %>">View / Edit</a></button></td>
+
+                      
+
+
+               <td>
+                <form action="/removeUser" method="POST">
+                  <input type="hidden" name="userId" value="<%= users[i]._id %>">
+                  <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#confirmRemoveModal<%= users[i]._id %>">Remove</button>
+                  <!-- Modal -->
+                  <div class="modal fade" id="confirmRemoveModal<%= users[i]._id %>" tabindex="-1" role="dialog" aria-labelledby="confirmRemoveModalLabel<%= users[i]._id %>" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="confirmRemoveModalLabel<%= users[i]._id %>">Confirm Remove</h5>
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
+                        <div class="modal-body">
+                          Are you sure you want to remove this user?
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                          <button type="submit" id="confirmRemoveBtn<%= users[i]._id %>" class="btn btn-danger">Remove</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </form>
+              </td>
+               
+                    <td>  <a      href="/adminViewBooks/view/<%= users[i]._id %>" class="btn btn-primary">View/Edit</a></td>
+
+
+
+                
+
+
+
+
+
+            </tr>
+            <%
+            }
+            }
+            else { 
+                %>
+                <tr>
+                    <td id="usernotfound" colspan="4">Users not found</td>
+                </tr>
+                <%
+            }
+            %>
+
+
+        <td>
+
+            
+        </td>
+
+
+        </table>
+    </div>
+
+    <%- include("./partials/footer") %>
+</body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Edit Book Details</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  <style>
+    body {
+      background-color: #f8f9fa;
+    }
+    .container {
+      margin-top: 50px;
+    }
+    .form-group {
+      margin-bottom: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Edit Book Details</h2>
+    <div class="post-form">
+      <form method="POST" action="/editBook">
+        <div class="form-group">
+          <input type="hidden" name="id" value="<%= book._id %>" class="form-control">
+        </div>
+        <div class="form-group">
+          <input type="text" name="title" id="title" placeholder="Title" value="<%= book.title %>" class="form-control" required>
+        </div>
+        <div class="form-group">
+          <textarea id="content" name="story" placeholder="Content" required class="form-control"><%= book.story %></textarea>
+        </div>
+        <div class="form-group">
+          <input type="number" name="publishedYear" placeholder="Published Year" value="<%= book.publishedYear %>" class="form-control" required>
+        </div>
+        <div class="form-group">
+          <button type="submit" onclick="submitForm()" class="btn btn-primary">Update</button>
+          <!-- <button class="btn btn-secondary"><a href="/home" style="color: white; text-decoration: none;">Back</a></button> -->
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+  <script>
+    function submitForm() {
+  alert("Form submitted successfully!");
+  const isAdminHome = window.location.href.includes("/adminhome");
+  
+  if (isAdminHome) {
+    window.location.href = "/adminhome";
+  } else {
+    window.location.href = "/home";
+  }
+}
+
+  </script>
+</body>
+</html>

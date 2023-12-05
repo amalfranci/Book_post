@@ -1,0 +1,87 @@
+<%- include("./partials/header") %>
+
+<style>
+  body {
+    background-color: #f2f2f2;
+    font-family: Arial, sans-serif;
+  }
+
+  .container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+
+  h1 {
+    text-align: center;
+    color: #032b29;
+    margin-bottom: 30px;
+  }
+
+  form {
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 5px;
+  }
+
+  .form-control {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    font-size: 16px;
+  }
+
+  .form-control:focus {
+    outline: none;
+    border-color: #28e7de;
+  }
+
+  .btn {
+    background-color: #28e7de;
+    color: #ffffff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+
+  .btn:hover {
+    background-color: #1ab3a1;
+  }
+
+  .go-back-link {
+    display: block;
+    text-align: center;
+    margin-top: 20px;
+    color: #032b29;
+    font-size: 14px;
+    text-decoration: none;
+  }
+</style>
+
+<script>
+  function showAlert() {
+    alert("User updated successfully!");
+  }
+</script>
+
+<div class="container ">
+  <h1>Edit User</h1>
+
+  <form action="/edit_user" method="POST">
+    <input type="gmail" class="form-control" name="gmail" placeholder="Enter Gmail" value="<%= user.valu %>" required>
+    <input type="name" name="name" class="form-control" placeholder="Enter Username" value="<%= user.email %>" required>
+    <input type="number" class="form-control" name="number" placeholder="Enter Phone Number" value="<%= user.number %>" required>
+
+    <input type="hidden" name="id" value="<%= user._id %>">
+
+    <input type="submit" value="Update User" class="btn" onclick="showAlert()">
+  </form>
+
+  <a href="/adminhome" class="go-back-link">Go Back to Dashboard</a>
+</div>
+
+<%- include("./partials/footer") %>

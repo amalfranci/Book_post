@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <title>Login</title>
+</head>
+
+<body style="background-color: #007bff; background: linear-gradient(to right, #0062E6, #33AEFF);">
+    <div class="container py-5 h-100">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col-12 col-sm-10 col-md-8 col-lg-6 col-xl-5">
+                <div class="card bg-white text-dark d-flex align-items-center">
+                    <div class="card-body p-4 text-center">
+                        <h2 class="fw-bold mb-2 text-uppercase">Login</h2>
+                        <p class="text-dark-50 mb-5">Please enter your username and password!</p>
+
+                        <form action="/login" method="POST" class="row g-3">
+                            <div class="col-12 mb-4">
+                                <input type="text" placeholder="Username" name="email" class="form-control form-control-lg" required>
+                            </div>
+                            <div class="col-12 mb-4">
+                                <input type="password" placeholder="Password" name="password" class="form-control form-control-lg" required>
+                            </div>
+                            <div class="col-12">
+                                <button type="submit" class="btn btn-info">Submit</button>
+                            </div>
+                        </form>
+
+                        <div class="text-center mt-4">
+                            <p class="mb-2"> Don't have an account? <a class="text-dark-50 fw-bold" href="/register">Sign up</a></p>
+                        </div>
+
+                        <% if (typeof error !== 'undefined' && error) { %>
+                            <div class="alert alert-danger bg-info mt-4">
+                                <p style="color: rgb(202, 8, 8); text-align: center; height: 1px;"><%= error %></p>
+                            </div>
+                        <% } %>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</body>
+
+</html>
